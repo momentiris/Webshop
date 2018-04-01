@@ -1,5 +1,5 @@
 import WebShop from './utils/webshop';
-import Navigator from './utils/Navigator';
+import getAnchors from './utils/getanchors';
 import Gallery from './components/Gallery.js';
 import {url_prod, url_cart} from './url';
 
@@ -7,11 +7,15 @@ import {url_prod, url_cart} from './url';
 export default class App {
 
   constructor () {
-    this.navigator = new Navigator();
-    console.log(this.navigator.links);
-    // history.pushState(1, 'hej', 'hej');
+
+
+    this.anchors = getAnchors();
+
+    this.currentState = this.navigation(this.anchors);
+
     this.webshop = new WebShop();
     this.gallery = new Gallery(document.querySelector('#gallery'));
+
 
     this.loadContent();
 
@@ -27,12 +31,24 @@ export default class App {
       .then(response => {
       if (response.length === 0)
             console.log('Nothing found...');
-
         response.forEach(product => {
           this.gallery.addItem(product);
         })
       })
   }
+
+  navigation(anchors) {
+    anchors.map(anchor => {
+      return anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('hej');
+        // history.replaceState('hej', 'hej', _anchor.href);
+      })
+    })
+  }
+
+
+
 
 
 }
