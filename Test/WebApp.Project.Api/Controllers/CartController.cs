@@ -26,11 +26,11 @@ namespace WebApp.Project.Api.Controllers
         }
 
         // GET api/values
-        [HttpGet]
-        public List<CartProductModel> Get()
-        {
-            return this.cartService.GetAll();
-        }
+        //[HttpGet]
+        //public List<CartProductModel> GetAll()
+        //{
+        //    return this.cartService.GetAll();
+        //}
 
         // GET api/values/5
         [HttpGet("{id}")]
@@ -58,7 +58,7 @@ namespace WebApp.Project.Api.Controllers
         [HttpDelete("{userid}/{productid}")]
         public IActionResult Delete(string userid, int productid)
         {
-            var result = this.cartService.Delete(new CartProductModel(userid, productid));
+            var result = this.cartService.Delete(userid, productid);
             var response = new CartResultObject(result);
 
             response.Message = response.Result ?

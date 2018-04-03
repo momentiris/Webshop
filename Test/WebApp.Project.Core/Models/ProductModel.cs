@@ -12,5 +12,7 @@ namespace Test.Project.Core.Models
         public string Price { get; set; }
 
         public string Image { get; set; }
+
+        public int quantity { get; set; }
     }
 }

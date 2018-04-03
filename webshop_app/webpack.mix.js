@@ -13,6 +13,12 @@ let mix = require('laravel-mix');
 
  mix.js('src/scripts/index.js', 'public/assets/scripts')
  .sass('src/styles/app.scss', 'public/assets/styles')
+ .browserSync({
+   proxy: 'webshop_app.test',
+   files: [
+     './public'
+   ]
+ });
 
 
 

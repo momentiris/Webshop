@@ -15,10 +15,10 @@ namespace Test.Project.Core.Services.Implementations
             this.cartRepository = cartRepository;
         }
 
-        public List<CartProductModel> GetAll()
-        {
-            return this.cartRepository.GetAll();
-        }
+        //public List<CartProductModel> GetAll()
+        //{
+        //    return this.cartRepository.GetAll();
+        //}
 
         public List<ProductModel> Get(string id)
         {
@@ -42,14 +42,14 @@ namespace Test.Project.Core.Services.Implementations
             return this.cartRepository.AddToCart(cart);
         }
 
-        public bool Delete(CartProductModel cart)
+        public bool Delete(string userid, int productid)
         {
             //if (string.IsNullOrEmpty(cart.ProductId) || string.IsNullOrEmpty(cart.CartId))
             //{
             //    return false;
             //}
 
-            return this.cartRepository.Delete(cart);
+            return this.cartRepository.Delete(userid, productid);
         }
 
 

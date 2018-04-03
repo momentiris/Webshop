@@ -1,0 +1,26 @@
+.cart__wrap {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black;
+  margin: .5rem;
+  padding: .5rem;
+  img {
+    height: 50px;
+    width: 35px;
+  }
+  button {
+    height: 20px;
+    min-width: 56px;
+
+  }
+  h5 {
+    margin-left: 2rem;
+  }
+  p:nth-of-type(1) {
+    margin-left: auto;
+    margin-right: 3rem;
+  }
+}

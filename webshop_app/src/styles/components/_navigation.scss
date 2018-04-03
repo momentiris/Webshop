@@ -1,0 +1,17 @@
+#nav-wrapper {
+	margin: 2rem;
+	nav {
+		ul {
+			padding: 0;
+			width: 400px;
+			display: flex;
+			justify-content: space-around;
+
+			li a:focus, a:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+
+}

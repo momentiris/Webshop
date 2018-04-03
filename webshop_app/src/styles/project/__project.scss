@@ -1,0 +1,41 @@
+@import 'stylesheet';
+@import 'typography';
+html {
+  font-size: 14px;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content__wrap {
+  width: 90%;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#content {
+  padding-top: 2rem;
+  width: 70%;
+display: flex;
+flex-flow: row wrap;
+justify-content: center;
+
+}
+
+.carticon {
+  cursor: pointer;
+	position: fixed;
+	top: 7%;
+	right: 15%;
+
+	width: 25px;
+	height: 25px;
+	align-self: flex-end;
+
+
+}

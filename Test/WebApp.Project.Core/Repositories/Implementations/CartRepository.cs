@@ -17,19 +17,19 @@ namespace Test.Project.Core.Repositories.Implementations
             this.connectionString = connectionString;
         }
 
-        public List<CartProductModel> GetAll()
-        {
-            using (var connection = new MySqlConnection(this.connectionString))
-            {
-                return connection.Query<CartProductModel>("select * from carts").ToList();
-            }
-        }
+        //public List<CartProductModel> GetAll()
+        //{
+        //    using (var connection = new MySqlConnection(this.connectionString))
+        //    {
+        //        return connection.Query<CartProductModel>("select * from carts").ToList();
+        //    }
+        //}
 
         public List<ProductModel> Get(string userid)
         {
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                return connection.Query<ProductModel>("SELECT Name, Description, Price, Image FROM Products JOIN Carts ON Products.Id = Carts.productid WHERE Carts.cartid = @userid ", new { userid }).ToList();
+                return connection.Query<ProductModel>("SELECT Products.Id, Name, Description, Price, Image FROM Products JOIN Carts ON Products.Id = Carts.productid WHERE Carts.cartid = @userid ", new { userid }).ToList();
             } 
         }
 
@@ -53,17 +53,15 @@ namespace Test.Project.Core.Repositories.Implementations
             return true;
         }
 
-        public bool Delete(CartProductModel cart)
+        public bool Delete(string userid, int productid)
         {
             using (var connection = new MySqlConnection(this.connectionString))
             {
-                if (cart.ProductId == 0)
-                    return false;
                 try
                 {
                     connection.Execute(
-                        "DELETE FROM Carts WHERE productid = @productid AND cartid = @userid",
-                        new { productid = @cart.ProductId, userid = @cart.CartId});
+                        "DELETE FROM Carts WHERE productid = @productid AND cartid = @userid LIMIT 1",
+                        new { productid = @productid, userid = @userid});
 
                 }
                 catch (Exception)
