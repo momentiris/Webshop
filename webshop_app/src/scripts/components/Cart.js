@@ -1,10 +1,9 @@
-import {url_prod, url_cart} from '../url';
-
 
 export default class Cart {
-  constructor(data) {
-    console.log(data);
+
+  constructor(data, app) {
     const {name, description, price, image, id} = data;
+    this.app = app;
 
     this.documentFragment = document.createDocumentFragment();
 
@@ -38,23 +37,7 @@ export default class Cart {
   }
 
   async removeFromCart(e) {
-
-    const remove = await fetch(`${url_cart}/${localStorage.getItem('user')}/${this.wrap.dataset.id}`, {
-      method: 'DELETE',
-      headers: new Headers({
-        'Accept': 'application/json',
-    		'Content-Type': 'application/json'
-      })
-    });
-    const response = await remove.json();
-
-    if (response.result == true) {
-      e.target.parentNode.remove();
-      console.log(response.message);
-
-    }
-
+    await this.app.webshop.removeFromCart(e, this.wrap.dataset.id)
+    await this.app.webshop.updateCart();
   }
-
-
 }

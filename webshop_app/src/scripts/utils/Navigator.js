@@ -16,11 +16,11 @@ export default class Navigator {
 		switch (e.target.href) {
 			case 'http://webshop_app.test/products':
 				window.history.pushState(e.target.href, null, e.target.href);
-				this.app.fetchProducts()
+				this.app.addProductsToGallery()
 				break;
 			case 'http://webshop_app.test/checkout':
 				window.history.pushState(e.target.href, null, e.target.href);
-				this.app.fetchCart();
+				this.app.addCartToGallery();
 				break;
 			case 'http://webshop_app.test/':
 				window.history.pushState(e.target.href, null, e.target.href);
@@ -34,10 +34,10 @@ export default class Navigator {
 
 			switch (e.state) {
 				case 'http://webshop_app.test/products':
-					this.app.fetchProducts();
+					this.app.addProductsToGallery();
 					break;
 				case 'http://webshop_app.test/checkout':
-					this.app.fetchCart();
+					this.app.addCartToGallery();
 					break;
 					case 'http://webshop_app.test/':
 					this.app.gallery.element.innerHTML = this.app.start;

@@ -1,9 +1,9 @@
-import {url_prod, url_cart} from '../url';
 
 export default class Product {
 
-	constructor(data) {
+	constructor(data, app) {
 		const {name, description, price, image, id} = data;
+		this.app = app;
 
 		this.documentFragment = document.createDocumentFragment();
 
@@ -46,18 +46,8 @@ export default class Product {
 		}
 	}
 
-	async addToCart(e) {
-
-		const get = await fetch('http://localhost:5000/api/cart', {
-		  method: 'POST',
-		  body: JSON.stringify(this.cartTemplate),
-		  headers: new Headers({
-		    'Accept': 'application/json',
-				'Content-Type': 'application/json'
-		  })
-		});
-		const result = await get.json();
-
-		console.log(result.message);
+	 async addToCart() {
+		await this.app.webshop.addToCart(this.cartTemplate);
+		await this.app.webshop.updateCart();
 	}
 }
