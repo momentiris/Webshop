@@ -39,5 +39,6 @@ export default class Cart {
   async removeFromCart(e) {
     await this.app.webshop.removeFromCart(e, this.wrap.dataset.id)
     await this.app.webshop.updateCart();
+    await this.app.webshop.getTotalPrice();
   }
 }

@@ -3,8 +3,6 @@ import Gallery from './components/Gallery.js';
 import Navigator from './utils/Navigator.js';
 import {url_prod, url_cart} from './url';
 
-
-
 export default class App {
 
   constructor () {
@@ -16,6 +14,7 @@ export default class App {
     this.start = this.gallery.element.innerHTML;
 
     this.navigator.handlePopState();
+		this.fetchProducts();
   }
 
   async fetchProducts() {
@@ -40,9 +39,8 @@ export default class App {
     }
 
     const cart = await this.webshop.getCart(url_cart);
-    console.log('No cart found in Local Storage, fetching and returning...');
-    
-    localStorage.setItem('cart', JSON.stringify(cart));
+    if (cart.length != 0)
+      localStorage.setItem('cart', JSON.stringify(cart));
 
     return cart;
   }
@@ -50,7 +48,6 @@ export default class App {
   async addProductsToGallery() {
 
     const products = await this.fetchProducts();
-    console.log(products);
 
     if (products.length === 0)
       console.log('Nothing found... ');
@@ -70,12 +67,18 @@ export default class App {
 
     this.clearGallery();
 
-    init.forEach(cartItem => {
+    await init.forEach(cartItem => {
       this.gallery.loadCart(cartItem);
     })
+    
+    await this.webshop.getTotalPrice();
   }
 
   clearGallery() {
     this.gallery.element.innerHTML = '';
+
+    console.log('cleared');
   }
+
+
 }

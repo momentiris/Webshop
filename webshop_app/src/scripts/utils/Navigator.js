@@ -17,14 +17,25 @@ export default class Navigator {
 			case 'http://webshop_app.test/products':
 				window.history.pushState(e.target.href, null, e.target.href);
 				this.app.addProductsToGallery()
+				this.app.gallery.formWrap.style.cssText = "display: none";
 				break;
+
 			case 'http://webshop_app.test/checkout':
 				window.history.pushState(e.target.href, null, e.target.href);
 				this.app.addCartToGallery();
+
+				document.querySelector('form') ?
+				this.app.gallery.formWrap.style.cssText = "display: block" :
+				this.app.gallery.formWrap.appendChild(this.app.gallery.checkout.documentFragment);
+
 				break;
+
 			case 'http://webshop_app.test/':
 				window.history.pushState(e.target.href, null, e.target.href);
 				this.app.gallery.element.innerHTML = this.app.start;
+				this.app.gallery.formWrap.style.cssText = "display: none";
+
+
 				break;
 		}
 	}

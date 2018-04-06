@@ -1,0 +1,29 @@
+.formWrap {
+	width: 70%;
+	max-width: 450px;
+}
+
+form {
+
+	margin-top: 2rem;
+	width: 100%;
+	p:nth-of-type(1) {
+		font-weight: bold;
+	}
+	label, input {
+		font-family: $main;
+		font-size: 0.75rem;
+	}
+	input {
+		width: 100%;
+		display: block;
+		margin-bottom: .5rem;
+		height: 25px;
+
+	}
+	label {
+		display: block;
+	}
+
+
+}
