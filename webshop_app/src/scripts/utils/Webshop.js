@@ -8,7 +8,11 @@ export default class Webshop {
     this.app = app
     this.user = localStorage.user ?
     localStorage.user :
-    localStorage.setItem('user', guid());
+    localStorage.setItem('user', guid()) ||
+    localStorage.getItem('user');
+
+
+    console.log('start up ' + this.user);
   }
   getProducts() {
     return window.fetch(url_prod)
@@ -16,7 +20,7 @@ export default class Webshop {
       .catch(error => console.log(error));
   }
 
-  getCart() {
+  getCart(url) {
     return window.fetch(`${url_cart}/${this.user}`)
     .then(res => res.json())
     .catch(error => console.log(error));
@@ -33,6 +37,7 @@ export default class Webshop {
 		});
 		const result = await get.json();
     console.log(result);
+    await this.updateCart(result.result);
   }
 
   async removeFromCart(event, id) {
@@ -48,18 +53,29 @@ export default class Webshop {
     if (response.result == true) {
       event.target.parentNode.remove();
       console.log(response.message);
+      this.updateCart(response.result);
+      this.getTotalPrice();
+
     }
   }
 
-  async updateCart(url) {
-    try {
-      const newCart = await this.getCart(url_cart);
-      localStorage.setItem('cart', JSON.stringify(newCart));
-    } catch (e) {
-      console.log(e);
-    } finally {
-      console.log('Sucessfully updated cart in localstorage!');
-      await this.updateTotalPrice();
+  async updateCart(result) {
+    if (result) {
+      console.log(result);
+      try {
+        // setTimeout(async () => {
+        const newCart = await this.getCart(url_cart);
+        console.log(newCart);
+        await localStorage.setItem('cart', JSON.stringify(newCart));
+        // console.log('hej');
+
+        // }, 500)
+      } catch (e) {
+        console.log(e);
+      } finally {
+        console.log('Sucessfully updated cart in localstorage!');
+        await this.updateTotalPrice();
+      }
     }
   }
 
@@ -80,8 +96,10 @@ export default class Webshop {
     const price = await this.app.gallery.element.querySelector('.total__value p');
 
     const cart = await this.app.fetchCart();
-
-    if (cart.length == 0) {
+    console.log(cart);
+    console.log(cart.length);
+    if (cart == 0) {
+      console.log('hej');
     this.app.gallery.element.innerHTML = 'No products in cart...';
     this.app.gallery.formWrap.style.cssText = "display: none";
       return;
@@ -133,7 +151,11 @@ async placeOrder(e) {
     });
 
     const response = await get.json();
-    console.log(response);
+		console.log(response);
+
+		if (response.result)
+			console.log('clear');
+
   }
   }
 }

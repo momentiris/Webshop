@@ -33,12 +33,9 @@ export default class App {
 
   async fetchCart() {
 
-    if (localStorage.getItem('cart') !== null) {
-      console.log('Found cart in Local Storage. Retrieving...');
-       return JSON.parse(localStorage.getItem('cart'))
-    }
 
     const cart = await this.webshop.getCart(url_cart);
+    console.log(cart);
     if (cart.length != 0)
       localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -70,7 +67,7 @@ export default class App {
     await init.forEach(cartItem => {
       this.gallery.loadCart(cartItem);
     })
-    
+
     await this.webshop.getTotalPrice();
   }
 

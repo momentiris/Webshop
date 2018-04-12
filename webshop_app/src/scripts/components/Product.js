@@ -48,6 +48,7 @@ export default class Product {
 
 	 async addToCart() {
 		await this.app.webshop.addToCart(this.cartTemplate);
-		await this.app.webshop.updateCart();
+		// await this.app.webshop.updateCart();
+
 	}
 }
