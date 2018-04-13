@@ -2,11 +2,11 @@
 School assignment in C#. Built on .NET CORE Web API and OOP ES6.
 
 
-#### 1. In /webshop_app, install npm.
+##### 1. In /webshop_app, install npm.
 `
 $ npm install
 `
-#### 2. Import database to your local MySQL server.
+##### 2. Import database to your local MySQL server.
 
 ##### 3. In Visual Studio Code, edit connectionstring in appsettings.json:
 `
