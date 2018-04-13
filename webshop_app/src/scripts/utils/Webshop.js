@@ -11,6 +11,8 @@ export default class Webshop {
     localStorage.setItem('user', guid()) ||
     localStorage.getItem('user');
 
+		console.log(this.user);
+
 
     console.log('start up ' + this.user);
   }
@@ -153,8 +155,16 @@ async placeOrder(e) {
     const response = await get.json();
 		console.log(response);
 
-		if (response.result)
-			console.log('clear');
+		if (response.result) {
+      console.log(response);
+      localStorage.clear();
+      window.app.gallery.formWrap.innerHTML = '';
+      window.app.gallery.element.innerHTML = `
+      <h2>The Lord thanks you for shopping at Bible Heaven!<h2>
+      `;
+
+
+    }
 
   }
   }
