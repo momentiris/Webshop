@@ -8,7 +8,7 @@ $ npm install
 `
 ##### 2. Import database to your local MySQL server.
 
-##### 3. In Visual Studio Code, edit connectionstring in appsettings.json:
+##### 3. In your preferred C# compatible editor, edit connectionstring in appsettings.json:
 `
 "ConnectionStrings": {
     "ConnectionString": "Server=localhost;Port=3306;Database=WebApp_DB;Uid=root;"
