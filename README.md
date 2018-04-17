@@ -11,7 +11,7 @@ $ npm install
 ##### 3. In your preferred C# compatible editor, edit connectionstring in appsettings.json:
 `
 "ConnectionStrings": {
-    "ConnectionString": "Server=localhost;Port=3306;Database=WebApp_DB;Uid=root;"
+    "ConnectionString": "Server=localhost;Port=[yourporthere];Database=[yourdatabasenamehere];Uid=[yourmysqlusercredentialshere];"
   },
 `
 ##### 4. In editor, build solution.
