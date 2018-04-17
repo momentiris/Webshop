@@ -14,7 +14,7 @@ $ npm install
     "ConnectionString": "Server=localhost;Port=3306;Database=WebApp_DB;Uid=root;"
   },
 `
-##### 4. In VSC, build solution.
+##### 4. In editor, build solution.
 
 ##### 5. In /webshop_app:
 `
