@@ -20,3 +20,6 @@ $ npm install
 `
 $ npm run watch
 `
+
+
+### Tested by [Kristian Liljander](https://github.com/krisKurken)  
