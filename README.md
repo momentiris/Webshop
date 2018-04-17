@@ -1,5 +1,5 @@
 ## Webshop
-School assignment in C#. Built on .NET CORE Web API and OOP ES6.
+School assignment in C#. Built on .NET CORE Web API and OOP, ES6.
 
 
 ##### 1. In /webshop_app, install npm.
