@@ -5,7 +5,7 @@ import {url_prod, url_cart} from '../url';
 export default class Webshop {
 
   constructor(app) {
-    this.app = app
+    this.app = app;
     this.user = localStorage.user ?
     localStorage.user :
     localStorage.setItem('user', guid()) ||
@@ -162,7 +162,6 @@ async placeOrder(e) {
       window.app.gallery.element.innerHTML = `
       <h2>The Lord thanks you for shopping at Bible Heaven!<h2>
       `;
-
 
     }
 
